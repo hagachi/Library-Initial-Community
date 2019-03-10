@@ -7,7 +7,9 @@ $master = "https://github.com/LANDIS-II-Foundation/Support-Library-Dlls-v7/raw/m
 # Modify here when any dependencies changed 
 
 $dlls = "Landis.Library.AgeOnlyCohorts-v3.dll",
-"Landis.Library.Cohorts-v2.dll"
+"Landis.Library.Cohorts-v2.dll",
+"Landis.Library.LeafBiomassCohorts-v2.dll",
+"Landis.Library.BiomassCohorts-v3.dll"
 #************************************************
 
 
