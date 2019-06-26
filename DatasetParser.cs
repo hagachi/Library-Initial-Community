@@ -170,7 +170,16 @@ namespace Landis.Library.InitialCommunities
             foreach(ushort age in ageBios.Keys)
             {
                 if (age % successionTimestep == 0)
-                    newList.Add(age, ageBios[age]);
+                {
+                    if (newList.ContainsKey(age))
+                    {
+                        newList[age] += ageBios[age];
+                    }
+                    else
+                    {
+                        newList.Add(age, ageBios[age]);
+                    }
+                }
                 else
                 {
                     ushort new_age = (ushort)(((age / successionTimestep) + 1) * successionTimestep);
