@@ -6,7 +6,7 @@
     <AssemblyCompany>LANDIS-II Foundation</AssemblyCompany>
     <AssemblyProduct>Landis.Library.InitialCommunity-vInputBiomass</AssemblyProduct>
     <AssemblyCopyright>LANDIS-II Foundation</AssemblyCopyright>        
-    <AssemblyVersion>1.0</AssemblyVersion>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
     <AssemblyDescription>Initial Communities Library for LANDIS-II</AssemblyDescription>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
