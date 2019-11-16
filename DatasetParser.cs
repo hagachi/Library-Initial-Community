@@ -48,7 +48,7 @@ namespace Landis.Library.InitialCommunities
                                                                   string message)
         {
             return new InputValueException(value,
-                                           string.Format("\"{0}\" is not a valid aboveground biomass input", value),
+                                           string.Format("{0} is not a valid aboveground biomass input", value),
                                            new MultiLineText(message));
         }
         //---------------------------------------------------------------------
@@ -229,16 +229,17 @@ namespace Landis.Library.InitialCommunities
             uint biomass;
             try
             {
-                biomass = (uint) Int32.Parse(word); // Percentage.Parse(word);
+                biomass = (uint) Int32.Parse(word); 
             }
             catch (System.FormatException exc)
             {
                 throw MakeInputValueException(valueAsStr.ToString(),
                                               exc.Message);
             }
-            if (biomass < 0.0 || biomass > 100000)
+
+            if (biomass < 0.0 || biomass > 500000)
                 throw MakeInputValueException(valueAsStr.ToString(),
-                                              string.Format("{0} is not between 0% and 100%", word));
+                                              string.Format("{0} is not between 0 and 500,000", biomass));
 
             //  Read whitespace and ')'
             valueAsStr.Append(ReadWhitespace(reader));
