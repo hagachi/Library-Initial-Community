@@ -48,7 +48,7 @@ namespace Landis.Library.InitialCommunities
                                                                   string message)
         {
             return new InputValueException(value,
-                                           string.Format("{0} is not a valid aboveground biomass input", value),
+                                           string.Format("\"{0}\" is not a valid aboveground biomass input", value),
                                            new MultiLineText(message));
         }
         //---------------------------------------------------------------------
