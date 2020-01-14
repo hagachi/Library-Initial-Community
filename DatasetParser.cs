@@ -48,7 +48,7 @@ namespace Landis.Library.InitialCommunities
                                                                   string message)
         {
             return new InputValueException(value,
-                                           string.Format("\"{0}\" is not a valid aboveground biomass input", value),
+                                           string.Format("\"{0}\" is not a valid aboveground biomass input", value.TrimStart('(')),
                                            new MultiLineText(message));
         }
         //---------------------------------------------------------------------
@@ -61,7 +61,7 @@ namespace Landis.Library.InitialCommunities
 
             InputVar<uint> mapCode = new InputVar<uint>("MapCode");
             InputVar<string> speciesName = new InputVar<string>("Species");
-            InputVar<ushort> age = new InputVar<ushort>("Age");
+            InputVar<ushort> age = new InputVar<ushort>("Age and Biomass");
             //InputVar<uint> biomass = new InputVar<uint>("Biomass gm-2");
             uint biomass = 0;
 
@@ -120,7 +120,6 @@ namespace Landis.Library.InitialCommunities
 
                         //Landis.Library.Succession.Model.Core.UI.WriteLine("New read in biomass value.");
                         biomass = ReadBiomass(currentLine);
-                        //ages.Add(age.Value.Actual);
                         TextReader.SkipWhitespace(currentLine);
                         ageBio.Add(age.Value.Actual, biomass);
                     }
@@ -198,7 +197,7 @@ namespace Landis.Library.InitialCommunities
             //        ages.RemoveAt(i);
             //}
 
-            return newList; // ages;
+            return newList; 
         }
 
         public static InputValue<uint> ReadBiomass(StringReader reader)
