@@ -58,11 +58,11 @@ namespace Landis.Library.InitialCommunities
         protected override IDataset Parse()
         {
             ReadLandisDataVar();
-            
-            // IF INPUT FILE = .TXT
+
+            // If ReadOptionalVar(CSV File)
+            // private Dataset ReadCSVInputFile(CSV FileName)
+            // ELSEIF INPUT FILE = .TXT
             // private Dataset ReadHumanReadableInputFile()
-            // ELSEIF INPUT File = .TXT
-            // private Dataset ReadCSVInputFile()
             // ELSE
             // ERROR MESSAGE
             
