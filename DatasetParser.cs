@@ -7,6 +7,8 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
+// COPY https://github.com/LANDIS-II-Foundation/Extension-Dynamic-Fire-System/blob/master/src/CSVParser.cs
+
 namespace Landis.Library.InitialCommunities
 {
     /// <summary>
@@ -165,6 +167,7 @@ namespace Landis.Library.InitialCommunities
         // private Dataset ReadCSVInputFile()
         // Open CSV
         // Read First Record:  MapCode, Spp, Age, WoodBiomass
+        // See:  https://github.com/LANDIS-II-Foundation/Extension-Dynamic-Fire-System/blob/master/src/Weather.cs
         // List<ISpeciesCohorts> speciesCohortsList = new List<ISpeciesCohorts>();
         // Dictionary of MapCodes entered in dataset (below)
         // If MapCode used previously
