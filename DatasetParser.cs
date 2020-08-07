@@ -57,6 +57,14 @@ namespace Landis.Library.InitialCommunities
         {
             ReadLandisDataVar();
             
+            // IF INPUT FILE = .TXT
+            // private Dataset ReadHumanReadableInputFile()
+            // ELSEIF INPUT File = .TXT
+            // private Dataset ReadCSVInputFile()
+            // ELSE
+            // ERROR MESSAGE
+            
+            // MOVE THIS SECTION TO PRIVATE METHOD, RETURN Dataset;
             Dataset dataset = new Dataset();
 
             InputVar<uint> mapCode = new InputVar<uint>("MapCode");
@@ -133,12 +141,13 @@ namespace Landis.Library.InitialCommunities
                     foreach (ushort age_key in ageBio.Keys)
                     {
                         float initialWoodBiomass = ageBio[age_key];
+                        float initialLeafBiomass = 0.0;
                         if (initialWoodBiomass <= 0.0)
                             throw new InputValueException(speciesName.Value.String,
                                                           "Cohort {0}, age {1} has zero or negative biomass, line {2}",
                                                           species.Name, age_key, lineNumber);
 
-                        speciesCohortsList.Add(new SpeciesCohorts(species, age_key, initialWoodBiomass, (float)0.0));
+                        speciesCohortsList.Add(new SpeciesCohorts(species, age_key, initialWoodBiomass, initialLeafBiomass));
                     }
                     
                     GetNextLine();
@@ -149,6 +158,43 @@ namespace Landis.Library.InitialCommunities
 
             return dataset;
         }
+        //---------------------------------------------------------------------
+        // private Dataset ReadHumanReadableInputFile()
+        
+        //---------------------------------------------------------------------
+        // private Dataset ReadCSVInputFile()
+        // Open CSV
+        // Read First Record:  MapCode, Spp, Age, WoodBiomass
+        // List<ISpeciesCohorts> speciesCohortsList = new List<ISpeciesCohorts>();
+        // Dictionary of MapCodes entered in dataset (below)
+        // If MapCode used previously
+        // throw new InputValueException(mapCode.Value.String, "The map code {0} was previously used on line {1}", mapCode.Value.Actual, lineNumber);
+        //                else
+        //                    Set map code, Add to map code dictionary
+
+
+//                     ISpecies species = speciesDataset[speciesName.Value.Actual];
+                    //if (species == null)
+                      //  throw new InputValueException(speciesName.Value.String,
+                        //                              "{0} is not a species name.",
+                          //                            speciesName.Value.String);
+                          
+        // Ages:  
+        // Create Dictionary of Ages
+        //If age found in dictionary
+//                        if (ageBio.ContainsKey(age.Value.Actual))
+  //                          throw new InputValueException(age.Value.String, "The age {0} appears more than once.", age.Value.String);
+        //ELSE
+//                        if (age.Value.Actual == 0)
+  //                          throw new InputValueException(age.Value.String, "Ages must be > 0.");
+//                        if (age.Value.Actual > species.Longevity)
+  //                          throw new InputValueException(age.Value.String,"The age {0} is more than longevity ({1}).",age.Value.String, species.Longevity);
+        // Biomass:  Must be > 0
+
+        // speciesCohortsList.Add(new SpeciesCohorts(species, age_key, initialWoodBiomass, initialLeafBiomass));
+        //   dataset.Add(new Community(mapCode.Value.Actual, speciesCohortsList));
+        
+        // return dataset;
 
         //---------------------------------------------------------------------
 
