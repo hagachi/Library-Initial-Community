@@ -193,35 +193,41 @@ namespace Landis.Library.InitialCommunities
                 // Read First Record:  MapCode, Spp, Age, WoodBiomass
                 int mapCode = System.Convert.ToInt32(row["MapCode"]);
                 string speciesName = System.Convert.ToString(row["SpeciesName"]);
-                int age = System.Convert.ToInt32(row["Age"]);
-                int wood_biomass = System.Convert.ToInt32(row["WoodBiomass"]);
 
-                ISpecies species = speciesDataset[speciesName];
-                if (species == null)
-                    throw new InputValueException(speciesName, "{0} is not a species name.", speciesName);
-                if (age == 0)
-                    throw new InputValueException(age.ToString(), "Ages must be > 0.");
-                if (age > species.Longevity)
-                    throw new InputValueException(age.ToString(), "The age {0} is more than longevity ({1}).", age.ToString(), species.Longevity);
-                if (wood_biomass <= 0)
-                    throw new InputValueException(wood_biomass.ToString(), "Wood biomass must be > 0.");
+                List<ISpeciesCohorts> listOfCohorts = new List<ISpeciesCohorts>();
 
-                if (!mapCodeList.ContainsKey(mapCode))
+                if (speciesName.Trim() == "NA")
                 {
-                    mapCodeList.Add(mapCode, new List<ISpeciesCohorts>());
-                    mapCodeList[mapCode].Add(new SpeciesCohorts(species, (ushort)age, (float)wood_biomass, initialLeafBiomass));
-                } else
-                {
-                    mapCodeList[mapCode].Add(new SpeciesCohorts(species, (ushort)age, (float)wood_biomass, initialLeafBiomass));
+                    if (mapCodeList.ContainsKey(mapCode))
+                        throw new InputValueException(speciesName, "{0} cannot be NA if the MapCode is already is use.", "The species name ");
+                    mapCodeList.Add(mapCode, listOfCohorts);
                 }
+                else
+                {
+                    int age = System.Convert.ToInt32(row["CohortAge"]);
+                    int wood_biomass = System.Convert.ToInt32(row["CohortBiomass"]);
 
-                //List<ISpeciesCohorts> speciesCohortsList = new List<ISpeciesCohorts>();
-                // Dictionary of MapCodes entered in dataset (below)
-                // If MapCode used previously
-                // throw new InputValueException(mapCode.Value.String, "The map code {0} was previously used on line {1}", mapCode.Value.Actual, lineNumber);
-                //                else
-                //                    Set map code, Add to map code dictionary
+                    ISpecies species = speciesDataset[speciesName];
+                    if (species == null)
+                        throw new InputValueException(speciesName, "{0} is not a species name.", speciesName);
+                    if (age == 0)
+                        throw new InputValueException(age.ToString(), "Ages must be > 0.");
+                    if (age > species.Longevity)
+                        throw new InputValueException(age.ToString(), "The age {0} is more than longevity ({1}).", age.ToString(), species.Longevity);
+                    if (wood_biomass <= 0)
+                        throw new InputValueException(wood_biomass.ToString(), "Wood biomass must be > 0.");
 
+                    if (!mapCodeList.ContainsKey(mapCode))
+                    {
+                        mapCodeList.Add(mapCode, listOfCohorts);
+                        mapCodeList[mapCode].Add(new SpeciesCohorts(species, (ushort)age, (float)wood_biomass, initialLeafBiomass));
+                    }
+                    else
+                    {
+                        mapCodeList[mapCode].Add(new SpeciesCohorts(species, (ushort)age, (float)wood_biomass, initialLeafBiomass));
+                    }
+
+                }
 
             }
 
@@ -229,19 +235,6 @@ namespace Landis.Library.InitialCommunities
             {
                 dataset.Add(new Community((uint) kvp.Key, kvp.Value));
             }
-
-
-
-
-            // Ages:  
-            // Create Dictionary of Ages
-            //If age found in dictionary
-            //                        if (ageBio.ContainsKey(age.Value.Actual))
-            //                          throw new InputValueException(age.Value.String, "The age {0} appears more than once.", age.Value.String);
-            //ELSE
-
-            // speciesCohortsList.
-            //   dataset.Add(new Community(mapCode.Value.Actual, speciesCohortsList));
 
             return dataset;
 
