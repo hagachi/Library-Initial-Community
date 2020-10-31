@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <RootNamespace>Landis.Library.InitialCommunity</RootNamespace>
-    <AssemblyName>Landis.Library.InitialCommunity-vInputBiomass</AssemblyName>
-    <AssemblyTitle>Landis.Library.InitialCommunity-vInputBiomass</AssemblyTitle>
+    <AssemblyName>Landis.Library.InitialCommunity-vInputBiomass_ftestloc</AssemblyName>
+    <AssemblyTitle>Landis.Library.InitialCommunity-vInputBiomass_ftestloc</AssemblyTitle>
     <AssemblyCompany>LANDIS-II Foundation</AssemblyCompany>
     <AssemblyProduct>Landis.Library.InitialCommunity-vInputBiomass</AssemblyProduct>
-    <AssemblyCopyright>LANDIS-II Foundation</AssemblyCopyright>        
+    <AssemblyCopyright>LANDIS-II Foundation</AssemblyCopyright>
     <AssemblyDescription>Initial Communities Library for LANDIS-II</AssemblyDescription>
-    <AssemblyVersion>1.1</AssemblyVersion>
-    <Version>1.1</Version>
-    <FileVersion>1.1</FileVersion>
+    <AssemblyVersion>1.1.1</AssemblyVersion>
+    <Version>1.1.1</Version>
+    <FileVersion>1.1.1</FileVersion>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/LANDIS-II-Foundation/Library-Initial-Community</RepositoryUrl>
@@ -39,9 +39,11 @@
     <Reference Include="Landis.Library.Cohorts-v2">
       <HintPath>lib\Landis.Library.Cohorts-v2.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Library.LeafBiomassCohorts-v2">
-      <HintPath>lib\Landis.Library.LeafBiomassCohorts-v2.dll</HintPath>
+    <Reference Include="Landis.Library.LeafBiomassCohorts-v2_ftestloc">
+      <!--<HintPath>lib\Landis.Library.LeafBiomassCohorts-v2.dll</HintPath>-->
+      <!--This dll is only compatible for feature-estloc-->
+      <HintPath>lib\Landis.Library.LeafBiomassCohorts-v2_ftestloc.dll</HintPath>
     </Reference>
   </ItemGroup>
-  
+
 </Project>

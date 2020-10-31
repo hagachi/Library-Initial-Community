@@ -165,7 +165,7 @@ namespace Landis.Library.InitialCommunities
                                                           "Cohort {0}, age {1} has zero or negative biomass, line {2}",
                                                           species.Name, age_key, lineNumber);
 
-                        speciesCohortsList.Add(new SpeciesCohorts(species, age_key, initialWoodBiomass, initialLeafBiomass));
+                        speciesCohortsList.Add(new SpeciesCohorts(species, age_key, initialWoodBiomass, initialLeafBiomass, "surface"));
                     }
 
                     GetNextLine();
@@ -220,11 +220,11 @@ namespace Landis.Library.InitialCommunities
                     if (!mapCodeList.ContainsKey(mapCode))
                     {
                         mapCodeList.Add(mapCode, listOfCohorts);
-                        mapCodeList[mapCode].Add(new SpeciesCohorts(species, (ushort)age, (float)wood_biomass, initialLeafBiomass));
+                        mapCodeList[mapCode].Add(new SpeciesCohorts(species, (ushort)age, (float)wood_biomass, initialLeafBiomass, "surface"));
                     }
                     else
                     {
-                        mapCodeList[mapCode].Add(new SpeciesCohorts(species, (ushort)age, (float)wood_biomass, initialLeafBiomass));
+                        mapCodeList[mapCode].Add(new SpeciesCohorts(species, (ushort)age, (float)wood_biomass, initialLeafBiomass, "surface"));
                     }
 
                 }
